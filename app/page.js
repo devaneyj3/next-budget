@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import Header from "../components/Header/Header";
 import Summary from "../components/Summary/Summary";
