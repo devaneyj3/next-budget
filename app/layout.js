@@ -1,4 +1,5 @@
 import Navbar from "@/components/Nav/nav";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.scss";
 
 export const metadata = {
