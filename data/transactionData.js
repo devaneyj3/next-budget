@@ -1,5 +1,21 @@
 export const transactions = [
 	{
+		Date: "2024-01-28",
+		Amount: 5600,
+		Account: "Checking",
+		Type: "inc",
+		Category: "Work",
+		Description: "Paycheck",
+	},
+	{
+		Date: "2024-01-28",
+		Amount: 1600,
+		Account: "Checking",
+		Type: "inc",
+		Category: "Work",
+		Description: "Paycheck",
+	},
+	{
 		Date: "2024-01-20",
 		Amount: 1600,
 		Account: "Checking",

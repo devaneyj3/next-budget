@@ -2,10 +2,9 @@
 import React, { useState } from "react";
 import styles from "./Transactions.module.scss";
 import { Table } from "reactstrap";
-import { transactions } from "@/data/transactionData";
-import CurrencyFormat from "react-currency-format";
+import { transformMoney } from "@/utils/helper";
 
-export default function Transactions() {
+export default function Transactions({ transactions }) {
 	const [transactionData, setTransactionData] = useState(transactions);
 	return (
 		<div className={styles.transactions_container}>
@@ -29,11 +28,7 @@ export default function Transactions() {
 								<tr key={index}>
 									<td>{Date}</td>
 									<td className={Type == "inc" ? styles.green : styles.red}>
-										<CurrencyFormat
-											value={Amount.toFixed(2)}
-											displayType={"text"}
-											thousandSeparator={true}
-										/>
+										{transformMoney(Amount)}
 									</td>
 									<td>{Account}</td>
 									<td>{Category}</td>
