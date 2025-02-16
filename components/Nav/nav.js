@@ -9,10 +9,10 @@ const Navbar = () => {
 			</div>
 			<ul className={styles.navLinks}>
 				<li>
-					<Link href="/">Budget</Link>
+					<Link href="/">Transaction Tracker</Link>
 				</li>
 				<li>
-					<Link href="/tracker">Transaction Tracker</Link>
+					<Link href="/budget">Budget</Link>
 				</li>
 			</ul>
 		</nav>

@@ -1,31 +1,14 @@
-"use client";
-import { useState } from "react";
+import Accounts from "@/components/Accounts/Accounts";
+import Transactions from "@/components/Transactions/Transactions";
+import { transactions } from "@/data/transactionData";
+import React from "react";
+import styles from "./tracker.module.scss";
 
-import "./globals.scss";
-import Summary from "@/components/Summary/Summary";
-import Form from "@/components/Form/Form";
-import TransactionList from "@/components/TransactionList/TransactionList";
-
-export default function Home() {
-	const [transactions, setTransactions] = useState([]);
-
-	const income = transactions
-		.filter((t) => t.type === "income")
-		.reduce((sum, t) => sum + t.amount, 0);
-
-	const expenses = transactions
-		.filter((t) => t.type === "expense")
-		.reduce((sum, t) => sum + t.amount, 0);
-
-	const addTransaction = (transaction) => {
-		setTransactions([...transactions, transaction]);
-	};
-
+export default function TrasactionTracker() {
 	return (
-		<div>
-			<Summary income={income} expenses={expenses} />
-			<Form onAddTransaction={addTransaction} />
-			<TransactionList transactions={transactions} />
+		<div className={styles.container}>
+			<Accounts transactions={transactions} />
+			<Transactions transactions={transactions} />
 		</div>
 	);
 }
