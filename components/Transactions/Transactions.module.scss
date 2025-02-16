@@ -6,4 +6,13 @@
   .table {
     width: 1000px;
   }
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
+    &::before {
+      content: '-';
+    }
+  }
 }
