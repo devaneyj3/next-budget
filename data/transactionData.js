@@ -26,7 +26,7 @@ export const transactions = [
 	{
 		Date: "2024-01-16",
 		Amount: 3177.5,
-		Account: "Credit Card",
+		Account: "CreditCard",
 		Type: "exp",
 		Category: "Groceries",
 		Description: "Groceries",
@@ -50,17 +50,9 @@ export const transactions = [
 	{
 		Date: "2024-01-02",
 		Amount: 3903.99,
-		Account: "Credit Card",
+		Account: "CreditCard",
 		Type: "exp",
 		Category: "Health",
 		Description: "Health",
-	},
-	{
-		Date: "2024-01-21",
-		Amount: 4930.83,
-		Account: "Savings",
-		Type: "exp",
-		Category: "Shopping",
-		Description: "Shopping",
 	},
 ];

@@ -1,6 +1,6 @@
 import styles from "./TransactionList.module.scss";
 
-export default function TransactionList({ transactions }) {
+export default function TransactionList() {
 	return (
 		<div className={styles.list}>
 			<table>
@@ -11,15 +11,7 @@ export default function TransactionList({ transactions }) {
 						<th>Type</th>
 					</tr>
 				</thead>
-				<tbody>
-					{transactions.map((t, index) => (
-						<tr key={index}>
-							<td>${t.amount}</td>
-							<td>{t.category}</td>
-							<td>{t.type}</td>
-						</tr>
-					))}
-				</tbody>
+				<tbody></tbody>
 			</table>
 		</div>
 	);
