@@ -1,33 +1,18 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./Accounts.module.scss"; // Fixed typo
 import Link from "next/link";
-import { transformMoney, updateAccounts } from "@/utils/helper";
+import { transformMoney } from "@/utils/helper";
+import { useTransactionContext } from "@/context/transactionContext";
 
 export default function Accounts() {
-	const [checkingAccount, setCheckingAccount] = useState(0); // Default to 0
-	const [savingsAccount, setSavingsAccount] = useState(0);
-	const [taxesAccount, setTaxesAccount] = useState(0);
-	const [givingAccount, setGivingAccount] = useState(0);
-	const [creditCardAccount, setCreditCardAccount] = useState(0);
-
-	useEffect(() => {
-		const updateAccountTotal = () => {
-			const checkingTotal = updateAccounts("Checking");
-			const savingsTotal = updateAccounts("Savings");
-			const taxesTotal = updateAccounts("Taxes");
-			const givingTotal = updateAccounts("Giving");
-			const creditCardTotal = updateAccounts("Credit Card");
-			setCheckingAccount(checkingTotal);
-			setSavingsAccount(savingsTotal);
-			setTaxesAccount(taxesTotal);
-			setGivingAccount(givingTotal);
-			setGivingAccount(givingTotal);
-			setCreditCardAccount(creditCardTotal);
-		};
-
-		updateAccountTotal();
-	}, []);
+	const {
+		checkingAccount,
+		savingsAccount,
+		taxesAccount,
+		givingAccount,
+		creditCardAccount,
+	} = useTransactionContext();
 
 	return (
 		<div className={styles.accounts}>

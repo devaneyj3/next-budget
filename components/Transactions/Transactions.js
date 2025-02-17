@@ -1,15 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Transactions.module.scss";
 import { Table } from "reactstrap";
 import { transformMoney } from "@/utils/helper";
+import { useTransactionContext } from "@/context/transactionContext";
 
-export default function Transactions({ transactions }) {
-	const [transactionData, setTransactionData] = useState(transactions);
+export default function Transactions() {
+	const { transactionsData } = useTransactionContext();
+
 	return (
 		<div className={styles.transactions_container}>
 			<h2>Transactions</h2>
-			{transactionData && (
+			{transactionsData && (
 				<Table hover bordered responsive striped className={styles.table}>
 					<thead>
 						<tr>
@@ -21,7 +23,7 @@ export default function Transactions({ transactions }) {
 						</tr>
 					</thead>
 					<tbody>
-						{transactionData.map((transaction, index) => {
+						{transactionsData.map((transaction, index) => {
 							const { Date, Amount, Type, Account, Category, Description } =
 								transaction;
 							return (
