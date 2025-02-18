@@ -10,7 +10,6 @@ export default function Accounts() {
 
 	return (
 		<div className={styles.accounts}>
-			<h4>Account Overview</h4>
 			{Object.keys(accountBalances).map((account) => (
 				<div key={account}>
 					<Link href="#">{account}</Link>
