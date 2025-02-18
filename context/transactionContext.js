@@ -30,14 +30,20 @@ export const TransactionContextProvider = ({ children }) => {
 				0
 			);
 
-	// Function to calculate total incomes and expenses
-	const calculateTotalIncomesAndExpenses = () => {
+	// Function to calculate checking account income and expenses
+	const calculateCheckingIncomeAndExpenses = () => {
 		let incomeTotal = transactionsData
-			.filter((transaction) => transaction.Type === "inc")
+			.filter(
+				(transaction) =>
+					transaction.Type === "inc" && transaction.Account === "Checking"
+			)
 			.reduce((acc, transaction) => acc + transaction.Amount, 0);
 
 		let expenseTotal = transactionsData
-			.filter((transaction) => transaction.Type === "exp")
+			.filter(
+				(transaction) =>
+					transaction.Type === "exp" && transaction.Account === "Checking"
+			)
 			.reduce((acc, transaction) => acc + transaction.Amount, 0);
 
 		setTotalIncome(transformMoney(incomeTotal));
@@ -55,8 +61,8 @@ export const TransactionContextProvider = ({ children }) => {
 			CreditCard: calculateAccountTotal("CreditCard"),
 		});
 
-		// Update total income, expenses, and balance
-		calculateTotalIncomesAndExpenses();
+		// Update checking account income, expenses, and balance
+		calculateCheckingIncomeAndExpenses();
 	};
 
 	// Auto-update when transactions change
