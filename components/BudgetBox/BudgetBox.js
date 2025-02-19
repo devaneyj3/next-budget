@@ -40,7 +40,7 @@ export default function BudgetBox({ title, item }) {
 					<tr>
 						<th>{title}</th>
 						<th>2800</th>
-						<th>{transformMoney(totalReceived)}</th>
+						<th>{totalReceived}</th>
 					</tr>
 				</tbody>
 			</Table>

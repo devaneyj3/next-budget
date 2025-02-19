@@ -24,17 +24,17 @@ export default function Transactions() {
 					</thead>
 					<tbody>
 						{transactionsData.map((transaction, index) => {
-							const { Date, Amount, Type, Account, Category, Description } =
+							const { date, amount, type, account, category, description } =
 								transaction;
 							return (
 								<tr key={index}>
-									<td>{Date}</td>
-									<td className={Type == "inc" ? styles.green : styles.red}>
-										{transformMoney(Amount)}
+									<td>{date}</td>
+									<td className={type == "inc" ? styles.green : styles.red}>
+										{transformMoney(amount)}
 									</td>
-									<td>{Account}</td>
-									<td>{Category}</td>
-									<td>{Description}</td>
+									<td>{account}</td>
+									<td>{category}</td>
+									<td>{description}</td>
 								</tr>
 							);
 						})}

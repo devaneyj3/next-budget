@@ -2,6 +2,7 @@ import Navbar from "@/components/Nav/nav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.scss";
 import { TransactionContextProvider } from "@/context/transactionContext";
+import ClientWrapper from "@/components/ClientWrapper";
 
 export const metadata = {
 	title: "Budget Tracker",
@@ -11,12 +12,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<TransactionContextProvider>
-				<body>
-					<Navbar />
-					{children}
-				</body>
-			</TransactionContextProvider>
+			<body>
+				<ClientWrapper>
+					<TransactionContextProvider>
+						<Navbar />
+						{children}
+					</TransactionContextProvider>
+				</ClientWrapper>
+			</body>
 		</html>
 	);
 }

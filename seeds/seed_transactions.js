@@ -14,7 +14,8 @@ module.exports.seed = async function (knex) {
 			amount: 500.0,
 			type: "inc",
 			account: "Checking",
-			created_at: new Date(),
+			category: "Checking",
+			date: new Date(),
 		},
 		{
 			id: 2,
@@ -22,7 +23,8 @@ module.exports.seed = async function (knex) {
 			amount: 75.49,
 			type: "exp",
 			account: "Checking",
-			created_at: new Date(),
+			category: "Checking",
+			date: new Date(),
 		},
 		{
 			id: 3,
@@ -30,7 +32,8 @@ module.exports.seed = async function (knex) {
 			amount: 250.0,
 			type: "exp",
 			account: "CreditCard",
-			created_at: new Date(),
+			category: "CreditCard",
+			date: new Date(),
 		},
 	]);
 };

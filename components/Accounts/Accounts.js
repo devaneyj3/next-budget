@@ -13,7 +13,7 @@ export default function Accounts() {
 			{Object.keys(accountBalances).map((account) => (
 				<div key={account}>
 					<Link href="#">{account}</Link>
-					<p>{transformMoney(accountBalances[account])}</p>
+					<p>{accountBalances[account]}</p>
 				</div>
 			))}
 		</div>

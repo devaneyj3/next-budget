@@ -9,7 +9,8 @@ module.exports.up = async function (knex) {
 		table.decimal("amount", 10, 2).notNullable();
 		table.string("type").notNullable(); // "inc" for income, "exp" for expenses
 		table.string("account").notNullable();
-		table.timestamp("created_at").defaultTo(knex.fn.now());
+		table.string("category").notNullable();
+		table.timestamp("date").defaultTo(knex.fn.now());
 	});
 };
 

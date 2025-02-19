@@ -1,12 +1,14 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
-import { transactions } from "@/data/transactionData";
 import { transformMoney } from "@/utils/helper";
+import axios from "axios";
 
 const TransactionContext = createContext();
 
 export const TransactionContextProvider = ({ children }) => {
-	const [transactionsData, setTransactions] = useState(transactions);
+	const [transactionsData, setTransactions] = useState([]);
+	const [transactionsError, setTransactionsError] = useState(null);
+	const [transactionsLoading, setTransactionsLoading] = useState(true);
 	const [accountBalances, setAccountBalances] = useState({
 		Checking: 0,
 		Savings: 1000,
@@ -21,12 +23,12 @@ export const TransactionContextProvider = ({ children }) => {
 	// Function to calculate total per account
 	const calculateAccountTotal = (accountType) =>
 		transactionsData
-			.filter((transaction) => transaction.Account === accountType)
+			.filter((transaction) => transaction.account === accountType)
 			.reduce(
 				(acc, transaction) =>
-					transaction.Type === "inc"
-						? acc + transaction.Amount
-						: acc - transaction.Amount,
+					transaction.type === "inc"
+						? acc + transaction.amount
+						: acc - transaction.amount,
 				0
 			);
 
@@ -35,20 +37,20 @@ export const TransactionContextProvider = ({ children }) => {
 		let incomeTotal = transactionsData
 			.filter(
 				(transaction) =>
-					transaction.Type === "inc" && transaction.Account === "Checking"
+					transaction.type === "inc" && transaction.account === "Checking"
 			)
-			.reduce((acc, transaction) => acc + transaction.Amount, 0);
+			.reduce((acc, transaction) => acc + transaction.amount, 0);
 
 		let expenseTotal = transactionsData
 			.filter(
 				(transaction) =>
-					transaction.Type === "exp" && transaction.Account === "Checking"
+					transaction.type === "exp" && transaction.account === "Checking"
 			)
-			.reduce((acc, transaction) => acc + transaction.Amount, 0);
+			.reduce((acc, transaction) => acc + transaction.amount, 0);
 
-		setTotalIncome(transformMoney(incomeTotal));
-		setTotalExpenses(transformMoney(expenseTotal));
-		setTotalBalance(transformMoney(incomeTotal - expenseTotal));
+		setTotalIncome(incomeTotal);
+		setTotalExpenses(expenseTotal);
+		setTotalBalance(incomeTotal - expenseTotal);
 	};
 
 	// Updates account balances and totals
@@ -70,6 +72,20 @@ export const TransactionContextProvider = ({ children }) => {
 		updateAccountTotal();
 	}, [transactionsData]);
 
+	useEffect(() => {
+		const fetchTransactions = async () => {
+			try {
+				const response = await axios.get("/api/transactions"); // ✅ Fetch from API
+				setTransactions(response.data);
+			} catch (err) {
+				setTransactionsError(err.message);
+			} finally {
+				setTransactionsLoading(false);
+			}
+		};
+
+		fetchTransactions();
+	}, []);
 	return (
 		<TransactionContext.Provider
 			value={{
@@ -80,6 +96,8 @@ export const TransactionContextProvider = ({ children }) => {
 				totalExpenses,
 				totalBalance,
 				updateAccountTotal,
+				transactionsError,
+				transactionsLoading,
 			}}>
 			{children}
 		</TransactionContext.Provider>
