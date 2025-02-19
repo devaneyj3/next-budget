@@ -21,13 +21,14 @@ export async function GET() {
 // Insert a new transaction
 export async function POST(req) {
 	try {
-		const { description, amount, type, account } = await req.json();
+		const { description, amount, type, account, category } = await req.json();
 
 		const { data, error } = await supabase
-			.from("transactions")
-			.insert([{ description, amount, type, account }]);
+			.from("Transaction")
+			.insert([{ description, amount, type, account, category }]);
 
 		if (error) throw error;
+		console.log(error);
 
 		return NextResponse.json(data, { status: 201 });
 	} catch (error) {

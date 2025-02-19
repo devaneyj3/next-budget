@@ -86,6 +86,29 @@ export const TransactionContextProvider = ({ children }) => {
 
 		fetchTransactions();
 	}, []);
+
+	const postTransactions = async (
+		description,
+		amount,
+		type,
+		account,
+		category
+	) => {
+		try {
+			const res = await axios.post("/api/transactions", {
+				description,
+				amount,
+				type,
+				account,
+				category,
+			});
+			console.log(res.data);
+		} catch (error) {
+			setTransactionsError("Error posting transaction:", error);
+		} finally {
+			setTransactionsLoading(false);
+		}
+	};
 	return (
 		<TransactionContext.Provider
 			value={{
@@ -98,8 +121,9 @@ export const TransactionContextProvider = ({ children }) => {
 				updateAccountTotal,
 				transactionsError,
 				transactionsLoading,
+				postTransactions,
 			}}>
-			{children}
+			{transactionsLoading ? <p>Loading transactions...</p> : children}
 		</TransactionContext.Provider>
 	);
 };
