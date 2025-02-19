@@ -7,6 +7,7 @@ import { useTransactionContext } from "@/context/transactionContext";
 
 export default function Transactions() {
 	const { transactionsData } = useTransactionContext();
+	console.log(transactionsData);
 
 	return (
 		<div className={styles.transactions_container}>

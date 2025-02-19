@@ -75,12 +75,12 @@ export const TransactionContextProvider = ({ children }) => {
 	useEffect(() => {
 		const fetchTransactions = async () => {
 			try {
-				const response = await axios.get("/api/transactions"); // ✅ Fetch from API
-				setTransactions(response.data);
-			} catch (err) {
-				setTransactionsError(err.message);
+				const res = await axios.get("/api/transactions");
+				setTransactions(res.data);
+			} catch (error) {
+				console.error("Error fetching transactions:", error);
 			} finally {
-				setTransactionsLoading(false);
+				setLoading(false);
 			}
 		};
 

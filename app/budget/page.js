@@ -3,7 +3,7 @@ import Summary from "@/components/Summary/Summary";
 import BudgetBox from "@/components/BudgetBox/BudgetBox";
 
 export default function Home() {
-	const budgetItems = ["Work", "Rent", "Travel", "Groceries"];
+	const budgetItems = ["Income", "Rent", "Bills", "Food"];
 	return (
 		<div>
 			<Summary />

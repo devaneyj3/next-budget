@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
-import db from "../../../data/db"; // ✅ Import Knex DB instance
+import prisma from "@/prisma";
 
 // Fetch all transactions
 export async function GET() {
 	try {
-		const transactions = await db("transactions").select("*");
-		return NextResponse.json(transactions, { status: 200 });
+		const transactions = await prisma.transaction.findMany();
+		// Convert amount to float
+		const formattedTransactions = transactions.map((t) => ({
+			...t,
+			amount: parseFloat(t.amount),
+		}));
+
+		return NextResponse.json(formattedTransactions, { status: 200 });
 	} catch (error) {
 		console.error("Error fetching transactions:", error);
 		return NextResponse.json(
@@ -19,11 +25,9 @@ export async function GET() {
 export async function POST(req) {
 	try {
 		const { description, amount, type, account } = await req.json();
-		const [newTransaction] = await db("transactions").insert(
-			{ description, amount, type, account },
-			["id", "description", "amount", "type", "account", "created_at"]
-		);
-
+		const newTransaction = await prisma.transaction.create({
+			data: { description, amount, type, account },
+		});
 		return NextResponse.json(newTransaction, { status: 201 });
 	} catch (error) {
 		console.error("Error adding transaction:", error);

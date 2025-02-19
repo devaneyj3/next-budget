@@ -7,13 +7,14 @@ import { transformMoney } from "@/utils/helper";
 export default function BudgetBox({ title, item }) {
 	const { transactionsData } = useTransactionContext();
 	const [transactionsByCategory, setTransactionsByCategory] = useState([]);
+	console.log(transactionsData);
 
 	useEffect(() => {
 		const getTransactionsByCategory = (category) => {
 			return transactionsData.filter(
 				(transaction) =>
-					transaction.Account === "Checking" &&
-					transaction.Category === category
+					transaction.account === "Checking" &&
+					transaction.category === category
 			);
 		};
 
@@ -22,7 +23,7 @@ export default function BudgetBox({ title, item }) {
 
 	// ✅ Use `.reduce()` to sum the total amount of transactions in this category
 	const totalReceived = transactionsByCategory.reduce(
-		(acc, transaction) => acc + transaction.Amount,
+		(acc, transaction) => acc + transaction.amount,
 		0
 	);
 
@@ -39,8 +40,8 @@ export default function BudgetBox({ title, item }) {
 				<tbody>
 					<tr>
 						<th>{title}</th>
-						<th>2800</th>
-						<th>{totalReceived}</th>
+						<th>{transformMoney(2800)}</th>
+						<th>{transformMoney(totalReceived)}</th>
 					</tr>
 				</tbody>
 			</Table>
