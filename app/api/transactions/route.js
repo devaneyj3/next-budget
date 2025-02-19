@@ -1,17 +1,14 @@
 import { NextResponse } from "next/server";
-import prisma from "@/prisma";
+import { supabase } from "../../../utils/supabase/server";
 
 // Fetch all transactions
 export async function GET() {
 	try {
-		const transactions = await prisma.transaction.findMany();
-		// Convert amount to float
-		const formattedTransactions = transactions.map((t) => ({
-			...t,
-			amount: parseFloat(t.amount),
-		}));
+		const { data, error } = await supabase.from("Transaction").select("*");
 
-		return NextResponse.json(formattedTransactions, { status: 200 });
+		if (error) throw error;
+
+		return NextResponse.json(data, { status: 200 });
 	} catch (error) {
 		console.error("Error fetching transactions:", error);
 		return NextResponse.json(
@@ -25,10 +22,14 @@ export async function GET() {
 export async function POST(req) {
 	try {
 		const { description, amount, type, account } = await req.json();
-		const newTransaction = await prisma.transaction.create({
-			data: { description, amount, type, account },
-		});
-		return NextResponse.json(newTransaction, { status: 201 });
+
+		const { data, error } = await supabase
+			.from("transactions")
+			.insert([{ description, amount, type, account }]);
+
+		if (error) throw error;
+
+		return NextResponse.json(data, { status: 201 });
 	} catch (error) {
 		console.error("Error adding transaction:", error);
 		return NextResponse.json(

@@ -78,9 +78,9 @@ export const TransactionContextProvider = ({ children }) => {
 				const res = await axios.get("/api/transactions");
 				setTransactions(res.data);
 			} catch (error) {
-				console.error("Error fetching transactions:", error);
+				setTransactionsError("Error fetching transactions:", error);
 			} finally {
-				setLoading(false);
+				setTransactionsLoading(false);
 			}
 		};
 
