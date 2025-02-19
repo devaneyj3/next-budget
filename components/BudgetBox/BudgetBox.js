@@ -7,7 +7,6 @@ import { transformMoney } from "@/utils/helper";
 export default function BudgetBox({ title, item }) {
 	const { transactionsData } = useTransactionContext();
 	const [transactionsByCategory, setTransactionsByCategory] = useState([]);
-	console.log(transactionsData);
 
 	useEffect(() => {
 		const getTransactionsByCategory = (category) => {
