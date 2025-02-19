@@ -1,0 +1,31 @@
+export const expenseCategories = [
+	"Rent/Mortgage",
+	"Utilities",
+	"Groceries",
+	"Transportation",
+	"Dining Out",
+	"Entertainment",
+	"Medical",
+	"Debt Payments",
+	"Education",
+	"Personal Care",
+	"Household Supplies",
+	"Insurance",
+	"Childcare",
+	"Pets",
+	"Taxes",
+	"Travel",
+	"Miscellaneous",
+];
+
+export const incomeCategories = [
+	"Salary",
+	"Freelance",
+	"Investments",
+	"Gifts",
+	"Rental Income",
+	"Business Income",
+	"Bonuses",
+	"Refunds",
+	"Other Income",
+];
