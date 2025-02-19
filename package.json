@@ -9,7 +9,8 @@
 		"lint": "next lint",
 		"seed": "node prisma/seed.js",
 		"migrate": "npx prisma migrate deploy",
-		"vercel-build": "npx prisma generate && prisma migrate deploy && next build"
+		"vercel-build": "npx prisma generate && prisma migrate deploy && next build",
+		"postinstall": "prisma generate"
 	},
 	"dependencies": {
 		"@prisma/client": "^6.4.0",
