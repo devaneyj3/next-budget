@@ -48,9 +48,9 @@ export const TransactionContextProvider = ({ children }) => {
 			)
 			.reduce((acc, transaction) => acc + transaction.amount, 0);
 
-		setTotalIncome(incomeTotal);
-		setTotalExpenses(expenseTotal);
-		setTotalBalance(incomeTotal - expenseTotal);
+		setTotalIncome(transformMoney(incomeTotal));
+		setTotalExpenses(transformMoney(expenseTotal));
+		setTotalBalance(transformMoney(incomeTotal - expenseTotal));
 	};
 
 	// Updates account balances and totals
