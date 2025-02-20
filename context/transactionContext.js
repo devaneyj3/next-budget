@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { transformMoney } from "@/utils/helper";
 import axios from "axios";
+import classes from "./context.module.scss";
 
 const TransactionContext = createContext();
 
@@ -123,7 +124,13 @@ export const TransactionContextProvider = ({ children }) => {
 				transactionsLoading,
 				postTransactions,
 			}}>
-			{transactionsLoading ? <p>Loading transactions...</p> : children}
+			{transactionsLoading ? (
+				<div className={classes.loading}>
+					<p>Loading transactions...</p>
+				</div>
+			) : (
+				children
+			)}
 		</TransactionContext.Provider>
 	);
 };
