@@ -1,3 +1,4 @@
+"use client";
 import { useTransactionContext } from "@/context/transactionContext";
 import styles from "./Summary.module.scss";
 
