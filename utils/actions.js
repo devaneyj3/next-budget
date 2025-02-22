@@ -1,5 +1,5 @@
 "use server";
-
+import { supabase } from "./supabase/server";
 import { revalidatePath } from "next/cache";
 
 // Simulated DB interaction (replace with actual DB call)
@@ -14,14 +14,14 @@ export async function postTransaction(prevState, formData) {
 		return { error: "Invalid input" };
 	}
 
-	// Example: Save transaction (replace with DB insert)
-	console.log("Saving transaction:", {
-		description,
-		amount,
-		type,
-		account,
-		category,
-	});
+	const { data, error } = await supabase
+		.from("Transaction")
+		.insert([{ description, amount, type, account, category }]);
+
+	if (error) throw error;
+	console.log(error);
+
+	console.log(data);
 
 	// Revalidate cache for UI updates
 	revalidatePath("/");
