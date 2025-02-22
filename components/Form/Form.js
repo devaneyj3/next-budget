@@ -1,13 +1,12 @@
 "use client";
-import { useFormState } from "react-dom";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import styles from "./Form.module.scss";
 import { expenseCategories, incomeCategories } from "@/utils/categories";
 import { postTransaction } from "@/utils/actions";
 
 export default function Form() {
 	const initialState = { success: false, error: null };
-	const [state, formAction] = useFormState(postTransaction, initialState);
+	const [state, formAction] = useActionState(postTransaction, initialState);
 
 	// ✅ Use React State for UI-only interactions
 	const [type, setType] = useState("exp"); // Default to expense
