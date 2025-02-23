@@ -17,7 +17,13 @@ export default function Form() {
 
 	return (
 		<form className={styles.form} action={formAction}>
-			<input type="number" name="amount" placeholder="Amount" required />
+			<input
+				type="number"
+				name="amount"
+				placeholder="Amount"
+				step="0.01"
+				required
+			/>
 			<input
 				type="text"
 				name="description"

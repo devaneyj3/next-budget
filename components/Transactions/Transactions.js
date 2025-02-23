@@ -26,15 +26,15 @@ export default function Transactions() {
 						{transactionsData.map((transaction, index) => {
 							const { date, amount, type, account, category, description } =
 								transaction;
-							let convertedDate = new Date(date);
-							const readableDate = convertedDate.toLocaleDateString("en-US", {
+							const formattedDate = new Intl.DateTimeFormat("en-US", {
 								year: "numeric",
 								month: "long",
 								day: "numeric",
-							});
+								timeZone: "America/New_York",
+							}).format(new Date(date));
 							return (
 								<tr key={index}>
-									<td>{readableDate}</td>
+									<td>{formattedDate}</td>
 									<td className={type == "inc" ? styles.green : styles.red}>
 										{transformMoney(amount)}
 									</td>

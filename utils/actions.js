@@ -25,14 +25,13 @@ export async function postTransaction(prevState, formData) {
 		return { error: "Invalid input" };
 	}
 
+	const date = new Date().toISOString();
+
 	const { data, error } = await supabase
 		.from("Transaction")
-		.insert([{ description, amount, type, account, category }]);
+		.insert([{ description, amount, type, account, category, date }]);
 
 	if (error) throw error;
-	console.log(error);
-
-	console.log(data);
 
 	// Revalidate cache for UI updates
 	revalidatePath("/");
