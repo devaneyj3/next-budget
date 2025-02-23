@@ -7,6 +7,7 @@ import {
 	calculateCheckingIncomeAndExpenses,
 } from "./transactionUtils";
 import classes from "./context.module.scss";
+import { supabase } from "@/utils/supabase/server";
 
 export const TransactionContextProvider = ({ children }) => {
 	const [transactionsData, setTransactions] = useState([]);
@@ -46,6 +47,27 @@ export const TransactionContextProvider = ({ children }) => {
 		updateAccountTotal();
 	}, [transactionsData]);
 
+	// ✅ Real-time listener for new transactions
+	useEffect(() => {
+		const handleInserts = (payload) => {
+			setTransactions((prevTransactions) => [payload.new, ...prevTransactions]); // ✅ Update state
+		};
+
+		// ✅ Subscribe to real-time changes
+		const channel = supabase
+			.channel("TransactionChannel")
+			.on(
+				"postgres_changes",
+				{ event: "INSERT", schema: "public", table: "Transaction" },
+				handleInserts
+			)
+			.subscribe();
+
+		// ✅ Cleanup function to unsubscribe when unmounted
+		return () => {
+			channel.unsubscribe();
+		};
+	}, []);
 	// Fetch transactions when the component mounts
 	useEffect(() => {
 		const getTransactions = async () => {
