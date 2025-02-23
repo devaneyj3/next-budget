@@ -1,8 +1,8 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
 import { transformMoney } from "@/utils/helper";
-import axios from "axios";
 import classes from "./context.module.scss";
+import { getTransactions } from "@/utils/actions";
 
 const TransactionContext = createContext();
 
@@ -75,14 +75,13 @@ export const TransactionContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const fetchTransactions = async () => {
-			try {
-				const res = await axios.get("/api/transactions");
-				setTransactions(res.data);
-			} catch (error) {
+			const { transactions, error } = await getTransactions();
+			if (error) {
 				setTransactionsError("Error fetching transactions:", error);
-			} finally {
-				setTransactionsLoading(false);
+			} else {
+				setTransactions(transactions);
 			}
+			setTransactionsLoading(false);
 		};
 
 		fetchTransactions();

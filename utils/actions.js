@@ -2,6 +2,16 @@
 import { supabase } from "./supabase/server";
 import { revalidatePath } from "next/cache";
 
+export async function getTransactions() {
+	const { data, error } = await supabase.from("Transaction").select("*");
+
+	if (error) {
+		return { error: error.message, transactions: [] };
+	}
+	return {
+		transactions: data,
+	};
+}
 // Simulated DB interaction (replace with actual DB call)
 export async function postTransaction(prevState, formData) {
 	const description = formData.get("description");
