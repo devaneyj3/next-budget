@@ -1,5 +1,5 @@
 "use client";
-import { useTransactionContext } from "@/context/transactionContext";
+import { useTransactionContext } from "@/context/TransactionContext";
 import styles from "./Summary.module.scss";
 
 export default function Summary() {

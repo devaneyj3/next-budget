@@ -4,12 +4,14 @@ import { revalidatePath } from "next/cache";
 
 export async function getTransactions() {
 	const { data, error } = await supabase.from("Transaction").select("*");
+	console.log(data);
 
 	if (error) {
 		return { error: error.message, transactions: [] };
 	}
 	return {
 		transactions: data,
+		error: null,
 	};
 }
 // Simulated DB interaction (replace with actual DB call)

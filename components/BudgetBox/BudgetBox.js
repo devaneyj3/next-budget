@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./BudgetBox.module.scss";
 import { Table } from "reactstrap";
-import { useTransactionContext } from "@/context/transactionContext";
+import { useTransactionContext } from "@/context/TransactionContext";
 import { transformMoney } from "@/utils/helper";
 
 export default function BudgetBox({ title, item }) {

@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Accounts.module.scss";
 import Link from "next/link";
 import { transformMoney } from "@/utils/helper";
-import { useTransactionContext } from "@/context/transactionContext";
+import { useTransactionContext } from "@/context/TransactionContext";
 
 export default function Accounts() {
 	const { accountBalances } = useTransactionContext();
