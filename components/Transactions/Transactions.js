@@ -24,7 +24,7 @@ export default function Transactions() {
 					</thead>
 					<tbody>
 						{transactionsData.map((transaction, index) => {
-							const { date, amount, type, account, category, description } =
+							const { date, amount, type, account, Category, description } =
 								transaction;
 							const formattedDate = new Intl.DateTimeFormat("en-US", {
 								year: "numeric",
@@ -39,7 +39,7 @@ export default function Transactions() {
 										{transformMoney(amount)}
 									</td>
 									<td>{account}</td>
-									<td>{category}</td>
+									<td>{Category && Category.name}</td>
 									<td>{description}</td>
 								</tr>
 							);

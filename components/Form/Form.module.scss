@@ -22,8 +22,5 @@ $secondary-color: #f44336;
     border: none;
     cursor: pointer;
 
-    &:hover {
-      background-color: darken($primary-color, 10%);
-    }
   }
 }

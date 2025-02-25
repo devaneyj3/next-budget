@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import CategoryContext from "./CategoryContext";
 import classes from "../context.module.scss";
-import { supabase } from "@/utils/supabase/server";
-import { fetchCategories } from "./contextAPI";
+// Consider importing a client-side Supabase instance if available
 
-export const TransactionContextProvider = ({ children }) => {
+import { fetchCategories } from "./contextAPI";
+import { supabase } from "@/utils/supabase/server";
+
+export const CategoryContextProvider = ({ children }) => {
 	const [categories, setCategories] = useState([]);
 	const [categoriesError, setCategoriesError] = useState(null);
 	const [categoriesLoading, setCategoriesLoading] = useState(true);
@@ -13,7 +15,7 @@ export const TransactionContextProvider = ({ children }) => {
 	// ✅ Real-time listener for new categories
 	useEffect(() => {
 		const handleInserts = (payload) => {
-			setCategories((prevCategories) => [payload.new, ...prevCategories]); // ✅ Update state
+			setCategories((prevCategories) => [payload.new, ...prevCategories]);
 		};
 
 		// ✅ Subscribe to real-time changes
@@ -26,25 +28,26 @@ export const TransactionContextProvider = ({ children }) => {
 			)
 			.subscribe();
 
-		// ✅ Cleanup function to unsubscribe when unmounted
+		// Cleanup function to unsubscribe when unmounted
 		return () => {
 			channel.unsubscribe();
 		};
 	}, []);
-	// Fetch transactions when the component mounts
+
+	// Fetch categories when the component mounts
 	useEffect(() => {
-		const getCategoies = async () => {
+		const getCategories = async () => {
 			const { categories, error } = await fetchCategories();
 
 			if (error) {
-				setCategoriesError("Error fetching categories:", error);
+				setCategoriesError(`Error fetching categories: ${error}`);
 			} else {
 				setCategories(categories);
 			}
 			setCategoriesLoading(false);
 		};
 
-		getCategoies();
+		getCategories();
 	}, []);
 
 	return (

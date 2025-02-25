@@ -1,12 +1,12 @@
 "use client";
 
-import CategoryContext from "@/context/CategoryContext/CategoryContext";
 import { TransactionContextProvider } from "../context/TransactionContext/TransactionProvider";
+import { CategoryContextProvider } from "@/context/CategoryContext/CategoryProvider";
 
 export default function ClientProviders({ children }) {
 	return (
-		<CategoryContext>
+		<CategoryContextProvider>
 			<TransactionContextProvider>{children}</TransactionContextProvider>;
-		</CategoryContext>
+		</CategoryContextProvider>
 	);
 }

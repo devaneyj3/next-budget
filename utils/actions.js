@@ -1,9 +1,14 @@
 "use server";
+import { findCategory } from "./categoriesActions";
 import { supabase } from "./supabase/server";
 import { revalidatePath } from "next/cache";
 
 export async function getTransactions() {
-	const { data, error } = await supabase.from("Transaction").select("*");
+	const { data, error } = await supabase
+		.from("Transaction")
+		.select("*, Category (name)");
+
+	console.log("actions.js, ", data);
 
 	if (error) {
 		return { error: error.message, transactions: [] };
@@ -19,7 +24,7 @@ export async function postTransaction(prevState, formData) {
 	const amount = parseFloat(formData.get("amount"));
 	const type = formData.get("type");
 	const account = formData.get("account");
-	const category = formData.get("category");
+	const categoryId = formData.get("categoryId");
 
 	if (!description || isNaN(amount)) {
 		return { error: "Invalid input" };
@@ -29,9 +34,11 @@ export async function postTransaction(prevState, formData) {
 
 	const { data, error } = await supabase
 		.from("Transaction")
-		.insert([{ description, amount, type, account, category, date }]);
+		.insert([{ description, amount, type, account, categoryId, date }]);
 
 	if (error) throw error;
+
+	console.log(data);
 
 	// Revalidate cache for UI updates
 	revalidatePath("/");

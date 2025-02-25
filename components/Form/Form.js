@@ -1,74 +1,66 @@
 "use client";
 import { useActionState, useState } from "react";
 import styles from "./Form.module.scss";
-import { expenseCategories, incomeCategories } from "@/utils/categories";
 import { postTransaction } from "@/utils/actions";
+import { TransactionTypeSelect } from "./TransactionTypeSelect";
+import { CategorySelect } from "./CategorySelect";
+import { AccountSelect } from "./AccountSelect";
+import { InputField } from "./InputField";
+import { FormFeedback } from "./FormFeedback";
+import { useCategoryContext } from "@/context/CategoryContext/CategoryContext";
+import AddCategoryForm from "./addCategoryForm";
+import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
 
-export default function Form() {
+export default function TransactionForm() {
 	const initialState = { success: false, error: null };
 	const [state, formAction] = useActionState(postTransaction, initialState);
 
-	// ✅ Use React State for UI-only interactions
-	const [type, setType] = useState("exp"); // Default to expense
-	const [category, setCategory] = useState(expenseCategories[0]); // Default category
+	const { categories } = useCategoryContext();
 
-	// ✅ Change category list dynamically based on `type`
-	const categories = type === "exp" ? expenseCategories : incomeCategories;
+	// UI-only state
+	const [type, setType] = useState("exp");
+	const [category, setCategory] = useState(categories[0].name);
 
 	return (
-		<form className={styles.form} action={formAction}>
-			<input
-				type="number"
-				name="amount"
-				placeholder="Amount"
-				step="0.01"
-				required
-			/>
-			<input
-				type="text"
-				name="description"
-				placeholder="Description"
-				required
-			/>
+		<>
+			{categories.length > 0 ? (
+				<form className={styles.form} action={formAction}>
+					<InputField
+						type="number"
+						name="amount"
+						placeholder="Amount"
+						step="0.01"
+						required
+					/>
+					<InputField
+						type="text"
+						name="description"
+						placeholder="Description"
+						required
+					/>
 
-			<select name="account">
-				<option value="Checking">Checking</option>
-				<option value="Savings">Savings</option>
-			</select>
+					<AccountSelect />
 
-			{/* ✅ Controlled select for transaction type */}
-			<select
-				name="type"
-				value={type}
-				onChange={(e) => {
-					setType(e.target.value);
-					setCategory(
-						e.target.value === "exp"
-							? expenseCategories[0]
-							: incomeCategories[0]
-					);
-				}}>
-				<option value="inc">Income</option>
-				<option value="exp">Expense</option>
-			</select>
+					<TransactionTypeSelect
+						type={type}
+						setType={setType}
+						setDefaultCategory={setCategory}
+					/>
+					{/* geting a bug value must be scalar */}
 
-			{/* ✅ Controlled select for category, updates dynamically */}
-			<select
-				name="category"
-				value={category}
-				onChange={(e) => setCategory(e.target.value)}>
-				{categories.map((cat, index) => (
-					<option key={index} value={cat}>
-						{cat}
-					</option>
-				))}
-			</select>
+					<CategorySelect
+						category={category}
+						setCategory={setCategory}
+						categories={categories}
+					/>
 
-			<button type="submit">Add</button>
+					<button type="submit">Add</button>
 
-			{/* ✅ Show success/error messages */}
-			{state?.error && <p className="error">{state.error}</p>}
-			{state?.success && <p className="success">Transaction added!</p>}
-		</form>
+					<FormFeedback error={state?.error} success={state?.success} />
+				</form>
+			) : (
+				<AddCategoryForm />
+			)}
+		</>
 	);
 }

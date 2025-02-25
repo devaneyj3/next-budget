@@ -69,24 +69,24 @@ export const TransactionContextProvider = ({ children }) => {
 		};
 	}, []);
 	// Fetch transactions when the component mounts
+	const getTransactions = async () => {
+		const { transactions, error } = await fetchTransactions();
+
+		if (error) {
+			setTransactionsError("Error fetching transactions:", error);
+		} else {
+			setTransactions(transactions);
+		}
+		setTransactionsLoading(false);
+	};
 	useEffect(() => {
-		const getTransactions = async () => {
-			const { transactions, error } = await fetchTransactions();
-
-			if (error) {
-				setTransactionsError("Error fetching transactions:", error);
-			} else {
-				setTransactions(transactions);
-			}
-			setTransactionsLoading(false);
-		};
-
 		getTransactions();
 	}, []);
 
 	return (
 		<TransactionContext.Provider
 			value={{
+				getTransactions,
 				transactionsData,
 				setTransactions,
 				accountBalances,

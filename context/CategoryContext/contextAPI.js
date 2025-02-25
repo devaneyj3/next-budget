@@ -1,8 +1,8 @@
-import { getCategoies } from "@/utils/categoriesActions";
+import { getCategories } from "@/utils/categoriesActions";
 
 // Fetch categories
 export async function fetchCategories() {
-	const { categories, error } = await getCategoies();
+	const { categories, error } = await getCategories();
 
 	if (error) {
 		return { error: error.message, categories: [] };
