@@ -1,51 +1,26 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import styles from "./BudgetBox.module.scss";
 import { Table } from "reactstrap";
-import { useTransactionContext } from "@/context/TransactionContext";
-import { transformMoney } from "@/utils/helper";
+import BudgetItem from "./BudgetItem";
 
-export default function BudgetBox({ title, item }) {
-	const { transactionsData } = useTransactionContext();
-	const [transactionsByCategory, setTransactionsByCategory] = useState([]);
-
-	useEffect(() => {
-		const getTransactionsByCategory = (category) => {
-			return transactionsData.filter(
-				(transaction) =>
-					transaction.account === "Checking" &&
-					transaction.category === category
-			);
-		};
-
-		setTransactionsByCategory(getTransactionsByCategory(title));
-	}, [title, item, transactionsData]);
-
-	// ✅ Use `.reduce()` to sum the total amount of transactions in this category
-	const totalReceived = transactionsByCategory.reduce(
-		(acc, transaction) => acc + transaction.amount,
-		0
-	);
-
+export default function BudgetBox({ categories, type }) {
 	return (
 		<div className={styles.BudgetBox}>
-			<Table borderless>
+			<h2>{type}</h2>
+			<Table hover striped>
 				<thead>
 					<tr>
-						<th>{title}</th>
+						<th>Title</th>
 						<th>Planned</th>
 						<th>Received</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th>{title}</th>
-						<th>{transformMoney(2800)}</th>
-						<th>{transformMoney(totalReceived)}</th>
-					</tr>
+					{categories.map((category) => {
+						return <BudgetItem key={category} category={category} />;
+					})}
 				</tbody>
 			</Table>
-			<p>Add {item}</p>
 		</div>
 	);
 }
