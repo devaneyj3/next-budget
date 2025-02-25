@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Transactions.module.scss";
 import { Table } from "reactstrap";
 import { transformMoney } from "@/utils/helper";
-import { useTransactionContext } from "@/context/TransactionContext";
+import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
 
 export default function Transactions() {
 	const { transactionsData } = useTransactionContext();

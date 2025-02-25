@@ -6,7 +6,7 @@ import {
 	calculateAccountTotal,
 	calculateCheckingIncomeAndExpenses,
 } from "./transactionUtils";
-import classes from "./context.module.scss";
+import classes from "../context.module.scss";
 import { supabase } from "@/utils/supabase/server";
 
 export const TransactionContextProvider = ({ children }) => {

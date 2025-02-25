@@ -1,8 +1,12 @@
-// components/ClientProviders.tsx
-"use client"; // ✅ Mark this as a Client Component
+"use client";
 
-import { TransactionContextProvider } from "../context/TransactionProvider";
+import CategoryContext from "@/context/CategoryContext/CategoryContext";
+import { TransactionContextProvider } from "../context/TransactionContext/TransactionProvider";
 
 export default function ClientProviders({ children }) {
-	return <TransactionContextProvider>{children}</TransactionContextProvider>;
+	return (
+		<CategoryContext>
+			<TransactionContextProvider>{children}</TransactionContextProvider>;
+		</CategoryContext>
+	);
 }
