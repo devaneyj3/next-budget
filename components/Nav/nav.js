@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./nav.module.scss";
-import { FaBars, FaTimes } from "react-icons/fa"; // For hamburger icon
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +14,7 @@ const Navbar = () => {
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.logo}>
-				<Link href="/">Budget Tracker</Link>
+				<Link href="/">BudgetWise</Link>
 			</div>
 
 			{/* Desktop Navigation */}
@@ -40,6 +40,11 @@ const Navbar = () => {
 				<ul className={styles.mobileMenu}>
 					<li>
 						<Link href="/" onClick={toggleMenu}>
+							Start Here
+						</Link>
+					</li>
+					<li>
+						<Link href="/tracker" onClick={toggleMenu}>
 							Transaction Tracker
 						</Link>
 					</li>

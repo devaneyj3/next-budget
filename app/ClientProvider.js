@@ -6,7 +6,7 @@ import { CategoryContextProvider } from "@/context/CategoryContext/CategoryProvi
 export default function ClientProviders({ children }) {
 	return (
 		<CategoryContextProvider>
-			<TransactionContextProvider>{children}</TransactionContextProvider>;
+			<TransactionContextProvider>{children}</TransactionContextProvider>
 		</CategoryContextProvider>
 	);
 }

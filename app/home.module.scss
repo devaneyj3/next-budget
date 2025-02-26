@@ -1,9 +1,110 @@
+/* Container with a tech-inspired gradient background */
 .container {
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  align-items: center;
+  padding: 40px 20px;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
 
-  .info {
-    text-align: center;
+/* Header styling with futuristic typography */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+  }
+  p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-top: 10px;
   }
 }
+
+/* Shared styling for content sections */
+.intro,
+.info,
+.tips {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Intro section with highlighted header */
+.intro {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ffdd57;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+}
+
+/* Info section with a techy list design */
+.info {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ffdd57;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      text-align: left;
+      strong {
+        color: #ffdd57;
+      }
+    }
+  }
+}
+
+/* Tips section styling */
+.tips {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #ffdd57;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+}
+
+/* Call-to-action with interactive hover effects */
+.cta {
+  margin: 30px 0;
+  .primaryButton {
+    background-color: #ffdd57;
+    color: #1f1c2c;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 221, 87, 0.6);
+    }
+  }
+}
+
