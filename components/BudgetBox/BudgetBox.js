@@ -17,7 +17,7 @@ export default function BudgetBox({ categories, type }) {
 				</thead>
 				<tbody>
 					{categories.map((category) => {
-						return <BudgetItem key={category} category={category} />;
+						return <BudgetItem key={category.id} category={category} />;
 					})}
 				</tbody>
 			</Table>

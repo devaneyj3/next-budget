@@ -8,14 +8,15 @@ export default function BudgetItem({ category }) {
 
 	useEffect(() => {
 		const getTransactionsByCategory = (category) => {
+			console.log(category);
 			return transactionsData.filter(
 				(transaction) =>
 					transaction.account === "Checking" &&
-					transaction.category === category
+					transaction.Category.name === category
 			);
 		};
 
-		setTransactionsByCategory(getTransactionsByCategory(category));
+		setTransactionsByCategory(getTransactionsByCategory(category.name));
 	}, [category, transactionsData]);
 
 	// ✅ Use `.reduce()` to sum the total amount of transactions in this category
@@ -24,8 +25,8 @@ export default function BudgetItem({ category }) {
 		0
 	);
 	return (
-		<tr key={category}>
-			<th>{category}</th>
+		<tr>
+			<th>{category.name}</th>
 			<th>2800</th>
 			<th>{transformMoney(totalReceived)}</th>
 		</tr>
