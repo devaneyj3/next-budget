@@ -3,10 +3,16 @@ export function SelectField({
 	value,
 	onChange,
 	children,
+	className,
 	required = false,
 }) {
 	return (
-		<select name={name} value={value} onChange={onChange} required={required}>
+		<select
+			className={className}
+			name={name}
+			value={value}
+			onChange={onChange}
+			required={required}>
 			{children}
 		</select>
 	);

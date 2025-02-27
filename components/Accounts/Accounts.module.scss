@@ -1,6 +1,44 @@
 .accounts {
   display: flex;
-  justify-content: space-around;
-  margin: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px auto;
   padding: 20px;
+}
+
+.accountCard {
+  background: rgba(255, 255, 255, 0.2); /* Increased opacity for better contrast */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Enhanced border for definition */
+  border-radius: 12px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Added subtle shadow for depth */
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.accountName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffdd57;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #fff;
+  }
+}
+
+.balance {
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Added text shadow for clarity */
 }

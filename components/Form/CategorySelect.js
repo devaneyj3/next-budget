@@ -1,8 +1,14 @@
 import { SelectField } from "./SelectField";
 
-export function CategorySelect({ category, setCategory, categories }) {
+export function CategorySelect({
+	category,
+	setCategory,
+	categories,
+	className,
+}) {
 	return (
 		<SelectField
+			className={className}
 			name="categoryId"
 			value={category.id}
 			onChange={(e) => setCategory(e.target.value)}>

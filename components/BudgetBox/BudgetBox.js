@@ -6,8 +6,8 @@ import BudgetItem from "./BudgetItem";
 export default function BudgetBox({ categories, type }) {
 	return (
 		<div className={styles.BudgetBox}>
-			<h2>{type}</h2>
-			<Table hover striped>
+			<h2 className={styles.title}>{type}</h2>
+			<Table hover striped className={styles.table}>
 				<thead>
 					<tr>
 						<th>Title</th>
@@ -16,9 +16,9 @@ export default function BudgetBox({ categories, type }) {
 					</tr>
 				</thead>
 				<tbody>
-					{categories.map((category) => {
-						return <BudgetItem key={category.id} category={category} />;
-					})}
+					{categories.map((category) => (
+						<BudgetItem key={category.id} category={category} />
+					))}
 				</tbody>
 			</Table>
 		</div>

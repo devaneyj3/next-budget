@@ -9,7 +9,6 @@ import { InputField } from "./InputField";
 import { FormFeedback } from "./FormFeedback";
 import { useCategoryContext } from "@/context/CategoryContext/CategoryContext";
 import AddCategoryForm from "./addCategoryForm";
-import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
 
 export default function TransactionForm() {
 	const initialState = { success: false, error: null };
@@ -26,6 +25,7 @@ export default function TransactionForm() {
 			{categories.length > 0 ? (
 				<form className={styles.form} action={formAction}>
 					<InputField
+						className={styles.input}
 						type="number"
 						name="amount"
 						placeholder="Amount"
@@ -33,28 +33,33 @@ export default function TransactionForm() {
 						required
 					/>
 					<InputField
+						className={styles.input}
 						type="text"
 						name="description"
 						placeholder="Description"
 						required
 					/>
 
-					<AccountSelect />
+					<AccountSelect className={styles.input} />
 
 					<TransactionTypeSelect
+						className={styles.input}
 						type={type}
+						category={category}
 						setType={setType}
 						setDefaultCategory={setCategory}
 					/>
-					{/* geting a bug value must be scalar */}
 
 					<CategorySelect
+						className={styles.input}
 						category={category}
 						setCategory={setCategory}
 						categories={categories}
 					/>
 
-					<button type="submit">Add</button>
+					<button type="submit" className={styles.submitButton}>
+						Add
+					</button>
 
 					<FormFeedback error={state?.error} success={state?.success} />
 				</form>

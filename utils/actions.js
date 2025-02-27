@@ -8,8 +8,6 @@ export async function getTransactions() {
 		.from("Transaction")
 		.select("*, Category (name)");
 
-	console.log("actions.js, ", data);
-
 	if (error) {
 		return { error: error.message, transactions: [] };
 	}
@@ -38,10 +36,8 @@ export async function postTransaction(prevState, formData) {
 
 	if (error) throw error;
 
-	console.log(data);
-
 	// Revalidate cache for UI updates
-	revalidatePath("/");
+	revalidatePath("/tracker");
 
 	return { success: true };
 }

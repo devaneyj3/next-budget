@@ -1,5 +1,3 @@
-import { transformMoney } from "@/utils/helper";
-
 export const calculateAccountTotal = (transactions, accountType) =>
 	transactions
 		.filter((transaction) => transaction.account === accountType)
@@ -27,8 +25,8 @@ export const calculateCheckingIncomeAndExpenses = (transactions) => {
 		.reduce((acc, transaction) => acc + transaction.amount, 0);
 
 	return {
-		totalIncome: transformMoney(incomeTotal),
-		totalExpenses: transformMoney(expenseTotal),
-		totalBalance: transformMoney(incomeTotal - expenseTotal),
+		totalIncome: incomeTotal,
+		totalExpenses: expenseTotal,
+		totalBalance: incomeTotal - expenseTotal,
 	};
 };

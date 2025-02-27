@@ -9,10 +9,10 @@ export default function Transactions() {
 	const { transactionsData } = useTransactionContext();
 
 	return (
-		<div className={styles.transactions_container}>
-			<h2>Transactions</h2>
+		<div className={styles.transactionsContainer}>
+			<h2 className={styles.title}>Transactions</h2>
 			{transactionsData && (
-				<Table hover bordered responsive striped className={styles.table}>
+				<Table hover responsive striped className={styles.table}>
 					<thead>
 						<tr>
 							<th>Date</th>
@@ -35,7 +35,7 @@ export default function Transactions() {
 							return (
 								<tr key={index}>
 									<td>{formattedDate}</td>
-									<td className={type == "inc" ? styles.green : styles.red}>
+									<td className={type === "inc" ? styles.green : styles.red}>
 										{transformMoney(amount)}
 									</td>
 									<td>{account}</td>

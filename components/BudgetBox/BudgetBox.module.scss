@@ -1,14 +1,43 @@
 .BudgetBox {
-  background: white;
-  text-align: left;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.85); // Semi-transparent white for a glass effect
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   width: 40%;
-  height: fit-content;
+  overflow-x: auto; // In case table width exceeds container
 
-  h2 {
+  .title {
     text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .table {
+    color: #333;
+    
+    thead {
+      background: #f0f0f0;
+      th {
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+    }
+    
+    tbody {
+      tr {
+        transition: background 0.3s ease;
+        &:hover {
+          background: rgba(255, 221, 87, 0.2);
+        }
+        td {
+          padding: 10px;
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }

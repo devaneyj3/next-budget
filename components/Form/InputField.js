@@ -4,9 +4,11 @@ export function InputField({
 	placeholder,
 	step,
 	required = false,
+	className,
 }) {
 	return (
 		<input
+			className={className}
 			type={type}
 			name={name}
 			placeholder={placeholder}

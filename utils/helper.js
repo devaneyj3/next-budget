@@ -5,6 +5,7 @@ export const transformMoney = (amount) => {
 		<CurrencyFormat
 			value={amount.toFixed(2)}
 			displayType={"text"}
+			prefix="$"
 			thousandSeparator={true}
 		/>
 	);

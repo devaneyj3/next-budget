@@ -11,9 +11,13 @@ export default function Accounts() {
 	return (
 		<div className={styles.accounts}>
 			{Object.keys(accountBalances).map((account) => (
-				<div key={account}>
-					<Link href="#">{account}</Link>
-					<p>{transformMoney(accountBalances[account])}</p>
+				<div className={styles.accountCard} key={account}>
+					<Link href="#" className={styles.accountName}>
+						{account}
+					</Link>
+					<p className={styles.balance}>
+						{transformMoney(accountBalances[account])}
+					</p>
 				</div>
 			))}
 		</div>
