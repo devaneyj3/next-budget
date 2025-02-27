@@ -48,11 +48,17 @@
 }
 
 .green {
-  color: #2e7d32; /* Darker green for better visibility */
+  color: #2e7d32 !important;
   font-weight: 600;
+  &::before {
+    content: '+';
+  }
 }
 
 .red {
-  color: #c62828; /* Darker red for better visibility */
+  color: #c62828 !important;
   font-weight: 600;
+  &::before {
+    content: '-';
+  }
 }

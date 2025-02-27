@@ -26,6 +26,7 @@ export default function Transactions() {
 						{transactionsData.map((transaction, index) => {
 							const { date, amount, type, account, Category, description } =
 								transaction;
+							console.log(type);
 							const formattedDate = new Intl.DateTimeFormat("en-US", {
 								year: "numeric",
 								month: "long",
