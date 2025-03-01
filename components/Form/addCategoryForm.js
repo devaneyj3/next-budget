@@ -3,6 +3,7 @@ import { useActionState } from "react";
 import styles from "./Form.module.scss";
 import { postCategory } from "@/utils/categoriesActions";
 import { FormFeedback } from "./FormFeedback";
+import { InputField } from "./InputField";
 
 export default function AddCategoryForm() {
 	const initialState = { success: false, error: null };
@@ -10,17 +11,17 @@ export default function AddCategoryForm() {
 
 	return (
 		<form className={styles.form} action={formAction}>
-			<div className={styles.field}>
-				<input
-					type="text"
-					name="name"
-					id="name"
-					placeholder="Enter category name"
-					required
-				/>
-			</div>
+			<InputField
+				className={styles.input}
+				type="text"
+				name="name"
+				placeholder="Enter category name"
+				required
+			/>
 
-			<button type="submit">Add Category</button>
+			<button type="submit" className={styles.submitButton}>
+				Add Category
+			</button>
 
 			<FormFeedback success={state?.success} error={state?.error} />
 		</form>

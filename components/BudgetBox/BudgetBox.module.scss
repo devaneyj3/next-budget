@@ -2,10 +2,9 @@
   background: rgba(255, 255, 255, 0.85); // Semi-transparent white for a glass effect
   backdrop-filter: blur(5px);
   padding: 20px;
-  margin: 20px auto;
   border-radius: 12px;
+  width: fit-content;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 40%;
   overflow-x: auto; // In case table width exceeds container
 
   .title {

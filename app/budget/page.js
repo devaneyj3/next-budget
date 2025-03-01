@@ -8,11 +8,17 @@ import { useCategoryContext } from "@/context/CategoryContext/CategoryContext";
 export default function Home() {
 	const { categories } = useCategoryContext();
 	return (
-		<div>
-			<Summary />
+		<div className={classes.page_container}>
+			<div className={classes.summary_container}>
+				<Summary />
+			</div>
 			<section className={classes.budget}>
-				<BudgetBox categories={categories} type="Income" />
-				<BudgetBox categories={categories} type="Expenses" />
+				<div className={classes.income}>
+					<BudgetBox categories={categories} type="Income" />
+				</div>
+				<div className={classes.expenses}>
+					<BudgetBox categories={categories} type="Expenses" />
+				</div>
 			</section>
 		</div>
 	);

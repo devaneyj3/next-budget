@@ -31,7 +31,7 @@ export default function Summary() {
 	console.log(budgetAmount);
 
 	return (
-		<div className={styles.summary}>
+		<div>
 			<h3 className={styles.header}>
 				Financial Summary for {showMonthAndYear(Date.now())}
 			</h3>
