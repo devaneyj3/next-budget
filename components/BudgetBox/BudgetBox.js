@@ -12,7 +12,7 @@ export default function BudgetBox({ categories, type }) {
 					<tr>
 						<th>Title</th>
 						<th>Planned</th>
-						<th>Received</th>
+						<th>{type === "Expenses" ? "Spent" : "Received"}</th>
 					</tr>
 				</thead>
 				<tbody>

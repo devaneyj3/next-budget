@@ -1,17 +1,44 @@
 "use client";
 import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
 import styles from "./Summary.module.scss";
-import { transformMoney } from "@/utils/helper";
+import { showMonthAndYear, transformMoney } from "@/utils/helper";
 
 export default function Summary() {
 	const { totalIncome, totalExpenses, totalBalance } = useTransactionContext();
+	const projectedIncome = 3700;
+	const projectedExpenses = 3460;
+	const remainingBudget = Math.abs(projectedIncome - projectedExpenses);
+
+	// output suplus or deficit budget amount
+
+	let budgetAmount = (
+		<p className={styles.value}>{transformMoney(remainingBudget)}</p>
+	);
+	if (projectedIncome < projectedExpenses) {
+		budgetAmount = (
+			<p className={styles.red}>
+				{transformMoney(remainingBudget)} over budget
+			</p>
+		);
+	} else {
+		budgetAmount = (
+			<p className={styles.green}>
+				{transformMoney(remainingBudget)} left to budget
+			</p>
+		);
+	}
+
+	console.log(budgetAmount);
+
 	return (
 		<div className={styles.summary}>
-			<h3 className={styles.header}>Financial Summary</h3>
+			<h3 className={styles.header}>
+				Financial Summary for {showMonthAndYear(Date.now())}
+			</h3>
 			<div className={styles.row}>
 				<div className={styles.card}>
 					<p className={styles.label}>Projected Income</p>
-					<p className={styles.value}>0</p>
+					<p className={styles.value}>{transformMoney(projectedIncome)}</p>
 				</div>
 				<div className={styles.card}>
 					<p className={styles.label}>Checking Income</p>
@@ -21,7 +48,7 @@ export default function Summary() {
 			<div className={styles.row}>
 				<div className={styles.card}>
 					<p className={styles.label}>Planned Expenses</p>
-					<p className={styles.value}>0</p>
+					<p className={styles.value}>{transformMoney(projectedExpenses)}</p>
 				</div>
 				<div className={styles.card}>
 					<p className={styles.label}>Checking Expenses</p>
@@ -30,7 +57,7 @@ export default function Summary() {
 			</div>
 			<div className={styles.total}>
 				<p className={styles.label}>Remaining Balance</p>
-				<p className={styles.value}>{transformMoney(totalBalance)}</p>
+				{budgetAmount}
 			</div>
 		</div>
 	);
