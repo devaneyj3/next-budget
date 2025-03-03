@@ -6,10 +6,13 @@ import React, { useState } from "react";
 import styles from "./tracker.module.scss";
 import Form from "@/components/Form/Form";
 import AddCategoryForm from "@/components/Form/addCategoryForm";
+import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
 
 export default function TrasactionTracker() {
 	const [showCategoryForm, setShowCategoryForm] = useState(false);
 	const [showTransactionForm, setShowTransactionForm] = useState(false);
+
+	const { transactionsData } = useTransactionContext();
 	return (
 		<div className={styles.container}>
 			<Accounts />
@@ -27,7 +30,7 @@ export default function TrasactionTracker() {
 				</p>
 			</div>
 			{showCategoryForm && <AddCategoryForm />}
-			<Transactions />
+			<Transactions name="Transactions" transactions={transactionsData} />
 		</div>
 	);
 }

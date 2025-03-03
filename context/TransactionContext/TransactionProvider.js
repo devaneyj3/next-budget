@@ -83,6 +83,14 @@ export const TransactionContextProvider = ({ children }) => {
 		getTransactions();
 	}, []);
 
+	//filter transactions by category
+
+	const filterByCategory = (category) => {
+		return transactionsData.filter(
+			(transaction) => transaction.Category.name === category
+		);
+	};
+
 	return (
 		<TransactionContext.Provider
 			value={{
@@ -96,6 +104,7 @@ export const TransactionContextProvider = ({ children }) => {
 				updateAccountTotal,
 				transactionsError,
 				transactionsLoading,
+				filterByCategory,
 			}}>
 			{transactionsLoading ? (
 				<div className={classes.loading}>

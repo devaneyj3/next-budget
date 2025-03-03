@@ -3,9 +3,15 @@ import React, { useEffect, useState } from "react";
 import { transformMoney } from "@/utils/helper";
 import styles from "./BudgetItem.module.scss";
 
+import BudgetModal from "../Modal/Modal";
+
 export default function BudgetItem({ category }) {
 	const { transactionsData } = useTransactionContext();
 	const [transactionsByCategory, setTransactionsByCategory] = useState([]);
+
+	const [modal, setModal] = useState(false);
+
+	const toggle = () => setModal(!modal);
 
 	useEffect(() => {
 		const getTransactionsByCategory = (categoryName) => {
@@ -28,10 +34,16 @@ export default function BudgetItem({ category }) {
 	);
 
 	return (
-		<tr className={styles.row}>
+		<tr className={styles.row} onClick={() => toggle()}>
 			<td className={styles.categoryName}>{category.name}</td>
 			<td className={styles.planned}>{transformMoney(2800)}</td>
 			<td className={styles.received}>{transformMoney(totalReceived)}</td>
+			<BudgetModal
+				title={category.name}
+				transactions={transactionsByCategory}
+				modal={modal}
+				toggle={toggle}
+			/>
 		</tr>
 	);
 }

@@ -4,12 +4,15 @@ import styles from "./Summary.module.scss";
 import { showMonthAndYear, transformMoney } from "@/utils/helper";
 
 export default function Summary() {
-	const { totalIncome, totalExpenses, totalBalance } = useTransactionContext();
+	const { totalIncome, totalExpenses } = useTransactionContext();
 	const projectedIncome = 3700;
-	const projectedExpenses = 3460;
+	const projectedExpenses = 74;
 	const remainingBudget = Math.abs(projectedIncome - projectedExpenses);
 
 	// output suplus or deficit budget amount
+	const percent = Math.abs(
+		100 - (projectedExpenses / projectedIncome) * 100
+	).toFixed(1);
 
 	let budgetAmount = (
 		<p className={styles.value}>{transformMoney(remainingBudget)}</p>
@@ -17,18 +20,16 @@ export default function Summary() {
 	if (projectedIncome < projectedExpenses) {
 		budgetAmount = (
 			<p className={styles.red}>
-				{transformMoney(remainingBudget)} over budget
+				{transformMoney(remainingBudget)} ({percent}%) over budget
 			</p>
 		);
 	} else {
 		budgetAmount = (
 			<p className={styles.green}>
-				{transformMoney(remainingBudget)} left to budget
+				{transformMoney(remainingBudget)} ({percent}%) left to budget
 			</p>
 		);
 	}
-
-	console.log(budgetAmount);
 
 	return (
 		<div>

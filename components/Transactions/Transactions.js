@@ -3,15 +3,12 @@ import React from "react";
 import styles from "./Transactions.module.scss";
 import { Table } from "reactstrap";
 import { formatDate, transformMoney } from "@/utils/helper";
-import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
 
-export default function Transactions() {
-	const { transactionsData } = useTransactionContext();
-
+export default function Transactions({ name, transactions }) {
 	return (
 		<div className={styles.transactionsContainer}>
-			<h2 className={styles.title}>Transactions</h2>
-			{transactionsData && (
+			<h2 className={styles.title}>{name}</h2>
+			{transactions && (
 				<Table hover responsive striped className={styles.table}>
 					<thead>
 						<tr>
@@ -23,10 +20,9 @@ export default function Transactions() {
 						</tr>
 					</thead>
 					<tbody>
-						{transactionsData.map((transaction, index) => {
+						{transactions.map((transaction, index) => {
 							const { date, amount, type, account, Category, description } =
 								transaction;
-							console.log(type);
 							const formattedDate = formatDate(date);
 							return (
 								<tr key={index}>
