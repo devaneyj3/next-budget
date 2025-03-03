@@ -4,25 +4,27 @@ import Transactions from "@/components/Transactions/Transactions";
 
 import React, { useState } from "react";
 import styles from "./tracker.module.scss";
-import Form from "@/components/Form/Form";
 import AddCategoryForm from "@/components/Form/addCategoryForm";
 import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
+import AddTransactionButton from "@/components/AddTransactionButton/AddTransactionButton";
 
 export default function TrasactionTracker() {
 	const [showCategoryForm, setShowCategoryForm] = useState(false);
-	const [showTransactionForm, setShowTransactionForm] = useState(false);
+
+	const transacitonHeaders = [
+		"Date",
+		"Amount",
+		"Account",
+		"Category",
+		"Description",
+	];
 
 	const { transactionsData } = useTransactionContext();
 	return (
 		<div className={styles.container}>
 			<Accounts />
 			<div className={styles.transactionForms}>
-				<p
-					className={styles.showCategory}
-					onClick={() => setShowTransactionForm(!showTransactionForm)}>
-					Add Transaction
-				</p>
-				{showTransactionForm && <Form />}
+				<AddTransactionButton isDetailForm={false} />
 				<p
 					className={styles.showCategory}
 					onClick={() => setShowCategoryForm(!showCategoryForm)}>
@@ -30,7 +32,11 @@ export default function TrasactionTracker() {
 				</p>
 			</div>
 			{showCategoryForm && <AddCategoryForm />}
-			<Transactions name="Transactions" transactions={transactionsData} />
+			<Transactions
+				name="Transactions"
+				transactions={transactionsData}
+				headers={transacitonHeaders}
+			/>
 		</div>
 	);
 }
