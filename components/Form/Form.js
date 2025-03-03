@@ -1,5 +1,5 @@
 "use client";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import styles from "./Form.module.scss";
 import { postTransaction } from "@/utils/actions";
 import { TransactionTypeSelect } from "./TransactionTypeSelect";
@@ -16,9 +16,19 @@ export default function TransactionForm() {
 
 	const { categories } = useCategoryContext();
 
+	//state of categories options based on selected type
+	const [filteredCategories, setFilteredCategories] = useState([]);
+
 	// UI-only state
 	const [type, setType] = useState("exp");
 	const [category, setCategory] = useState(categories[0].name);
+
+	useEffect(() => {
+		const filterCategories = () => {
+			setFilteredCategories(categories.filter((cat) => cat.type === type));
+		};
+		filterCategories();
+	}, [type]);
 
 	return (
 		<>
@@ -54,7 +64,7 @@ export default function TransactionForm() {
 						className={styles.input}
 						category={category}
 						setCategory={setCategory}
-						categories={categories}
+						categories={filteredCategories}
 					/>
 
 					<button type="submit" className={styles.submitButton}>

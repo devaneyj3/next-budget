@@ -31,12 +31,15 @@ export async function findCategory(categoryID) {
 // Simulated DB interaction (replace with actual DB call)
 export async function postCategory(prevState, formData) {
 	const name = formData.get("name");
+	const type = formData.get("type");
 
 	if (!name) {
 		return { error: "Invalid input" };
 	}
 
-	const { data, error } = await supabase.from("Category").insert([{ name }]);
+	const { data, error } = await supabase
+		.from("Category")
+		.insert([{ name, type }]);
 
 	if (error) throw error;
 
