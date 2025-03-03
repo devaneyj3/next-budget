@@ -6,7 +6,8 @@ import classes from "./budget.module.scss";
 import { useCategoryContext } from "@/context/CategoryContext/CategoryContext";
 
 export default function Home() {
-	const { categories } = useCategoryContext();
+	const { incomeCategories, expenseCategories } = useCategoryContext();
+
 	return (
 		<div className={classes.page_container}>
 			<div className={classes.summary_container}>
@@ -14,10 +15,10 @@ export default function Home() {
 			</div>
 			<section className={classes.budget}>
 				<div className={classes.income}>
-					<BudgetBox categories={categories} type="Income" />
+					<BudgetBox categories={incomeCategories} type="Income" />
 				</div>
 				<div className={classes.expenses}>
-					<BudgetBox categories={categories} type="Expenses" />
+					<BudgetBox categories={expenseCategories} type="Expenses" />
 				</div>
 			</section>
 		</div>

@@ -11,6 +11,19 @@ export const CategoryContextProvider = ({ children }) => {
 	const [categories, setCategories] = useState([]);
 	const [categoriesError, setCategoriesError] = useState(null);
 	const [categoriesLoading, setCategoriesLoading] = useState(true);
+	const [incomeCategories, setIncomeCategories] = useState([]);
+	const [expenseCategories, setExpenseCategories] = useState([]);
+
+	console.log(expenseCategories);
+
+	// Filter Categories based on type
+	useEffect(() => {
+		const filterCategories = () => {
+			setExpenseCategories(categories.filter((cat) => cat.type === "exp"));
+			setIncomeCategories(categories.filter((cat) => cat.type === "inc"));
+		};
+		filterCategories();
+	}, [categories]);
 
 	// ✅ Real-time listener for new categories
 	useEffect(() => {
@@ -56,6 +69,8 @@ export const CategoryContextProvider = ({ children }) => {
 				categories,
 				categoriesError,
 				categoriesLoading,
+				incomeCategories,
+				expenseCategories,
 			}}>
 			{categoriesLoading ? (
 				<div className={classes.loading}>
