@@ -4,7 +4,7 @@ import Transactions from "../Transactions/Transactions";
 
 function BudgetModal({ title, modal, toggle, transactions }) {
 	return (
-		<Modal isOpen={modal} toggle={toggle} fullscreen>
+		<Modal isOpen={modal} toggle={toggle} size="lg">
 			<ModalBody>
 				<Transactions name={title} transactions={transactions} />
 			</ModalBody>
