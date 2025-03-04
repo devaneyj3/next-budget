@@ -1,6 +1,6 @@
+import styles from "./RangeInput.module.scss";
 const RangeInput = ({ category, value, max, onChange }) => (
-	<div>
-		<label>{value}%</label>
+	<>
 		<input
 			type="range"
 			min="0"
@@ -9,7 +9,8 @@ const RangeInput = ({ category, value, max, onChange }) => (
 			step="1"
 			onChange={(e) => onChange(category.name, Number(e.target.value))}
 		/>
-	</div>
+		<span className={styles.percent}>{value}%</span>
+	</>
 );
 
 export default RangeInput;

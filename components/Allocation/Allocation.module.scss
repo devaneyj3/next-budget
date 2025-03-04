@@ -1,9 +1,30 @@
 .allocation_container {
   display: flex;
   justify-content: space-between;
+  height: 60px;
+
+  align-items: center;
+
+  gap: 1rem;
+  .category {
+    color: grey;
+    font-size: small;
+  }
 }
 
 .leftToBudgetPercent {
   font-size: .75em;
   color: gray;
+}
+
+
+
+.allocation_container > .category {
+  flex: 1;
+  align-self: center;
+  margin-top: 16px;
+}
+
+.allocation_container > :nth-child(2) {
+  flex: 2; // This is your RangeInput component
 }

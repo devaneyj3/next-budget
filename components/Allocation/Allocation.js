@@ -46,7 +46,7 @@ export default function Allocation({ allocations, setAllocations }) {
 				);
 				return (
 					<div key={cat.name} className={styles.allocation_container}>
-						<p>{cat.name}</p>
+						<p className={styles.category}>{cat.name}</p>
 						<RangeInput
 							category={cat}
 							value={allocations[cat.name]}
@@ -57,9 +57,7 @@ export default function Allocation({ allocations, setAllocations }) {
 							}
 							onChange={handleAllocationChange}
 						/>
-						<p>
-							{itemAllocation} towards {cat.name}
-						</p>
+						<p className={styles.category}>{itemAllocation}</p>
 					</div>
 				);
 			})}
