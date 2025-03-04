@@ -1,8 +1,6 @@
 const RangeInput = ({ category, value, max, onChange }) => (
 	<div>
-		<label>
-			{category.name}: {value}%
-		</label>
+		<label>{value}%</label>
 		<input
 			type="range"
 			min="0"

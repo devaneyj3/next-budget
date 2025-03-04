@@ -5,11 +5,17 @@ import styles from "./BudgetItem.module.scss";
 
 import BudgetModal from "../Modal/Modal";
 
-export default function BudgetItem({ category }) {
-	const { transactionsData } = useTransactionContext();
+export default function BudgetItem({ category, type, allocations }) {
+	const { transactionsData, projectedIncome } = useTransactionContext();
 	const [transactionsByCategory, setTransactionsByCategory] = useState([]);
 
 	const [modal, setModal] = useState(false);
+
+	let expenseAllocation = 0;
+	if (type != "Income") {
+		const itemPercent = allocations[category.name] / 100;
+		expenseAllocation = transformMoney(itemPercent * projectedIncome);
+	}
 
 	const toggle = () => setModal(!modal);
 
@@ -36,7 +42,11 @@ export default function BudgetItem({ category }) {
 	return (
 		<tr className={styles.row} onClick={() => toggle()}>
 			<td className={styles.categoryName}>{category.name}</td>
-			<td className={styles.planned}>{transformMoney(2800)}</td>
+			<td className={styles.planned}>
+				{type === "Income"
+					? transformMoney(projectedIncome)
+					: expenseAllocation}
+			</td>
 			<td className={styles.received}>{transformMoney(totalReceived)}</td>
 			<BudgetModal
 				title={category.name}

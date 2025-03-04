@@ -8,8 +8,10 @@ import {
 } from "./transactionUtils";
 import classes from "../context.module.scss";
 import { supabase } from "@/utils/supabase/server";
+import { useCategoryContext } from "../CategoryContext/CategoryContext";
 
 export const TransactionContextProvider = ({ children }) => {
+	const { expenseCategories } = useCategoryContext();
 	const [transactionsData, setTransactions] = useState([]);
 	const [transactionsError, setTransactionsError] = useState(null);
 	const [transactionsLoading, setTransactionsLoading] = useState(true);
@@ -25,7 +27,12 @@ export const TransactionContextProvider = ({ children }) => {
 	const [totalBalance, setTotalBalance] = useState(0);
 	const [projectedIncome, setProjectedIncome] = useState(3700);
 	const [projectedExpenses, setProjectedExpenses] = useState(3200);
+	// Initialize state for all categories
+	const [allocations, setAllocations] = useState(
+		Object.fromEntries(expenseCategories.map((cat) => [cat.name, 0]))
+	);
 
+	console.log("transaction provider,", allocations);
 	// Updates account balances and totals
 	const updateAccountTotal = () => {
 		setAccountBalances({
@@ -96,6 +103,8 @@ export const TransactionContextProvider = ({ children }) => {
 	return (
 		<TransactionContext.Provider
 			value={{
+				allocations,
+				setAllocations,
 				getTransactions,
 				projectedExpenses,
 				projectedIncome,
