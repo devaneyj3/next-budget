@@ -4,9 +4,8 @@ import styles from "./Summary.module.scss";
 import { showMonthAndYear, transformMoney } from "@/utils/helper";
 
 export default function Summary() {
-	const { totalIncome, totalExpenses } = useTransactionContext();
-	const projectedIncome = 3700;
-	const projectedExpenses = 74;
+	const { totalIncome, totalExpenses, projectedExpenses, projectedIncome } =
+		useTransactionContext();
 	const remainingBudget = Math.abs(projectedIncome - projectedExpenses);
 
 	// output suplus or deficit budget amount

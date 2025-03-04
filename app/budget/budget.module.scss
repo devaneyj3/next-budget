@@ -19,6 +19,15 @@
   }
 }
 
+.allocation {
+
+  margin: 50px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+}
+
 @media screen and (max-width: 800px) {
   .income {
     margin-top: 30px;

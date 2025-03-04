@@ -10,7 +10,7 @@ import { FormFeedback } from "./FormFeedback";
 import { useCategoryContext } from "@/context/CategoryContext/CategoryContext";
 import AddCategoryForm from "./addCategoryForm";
 
-export default function TransactionForm({ isDetailForm }) {
+export default function TransactionForm() {
 	const initialState = { success: false, error: null };
 	const [state, formAction] = useActionState(postTransaction, initialState);
 
@@ -50,25 +50,21 @@ export default function TransactionForm({ isDetailForm }) {
 						required
 					/>
 
-					{!isDetailForm && (
-						<>
-							<AccountSelect className={styles.input} />
-							<TransactionTypeSelect
-								className={styles.input}
-								type={type}
-								category={category}
-								setType={setType}
-								setDefaultCategory={setCategory}
-							/>
+					<AccountSelect className={styles.input} />
+					<TransactionTypeSelect
+						className={styles.input}
+						type={type}
+						category={category}
+						setType={setType}
+						setDefaultCategory={setCategory}
+					/>
 
-							<CategorySelect
-								className={styles.input}
-								category={category}
-								setCategory={setCategory}
-								categories={filteredCategories}
-							/>
-						</>
-					)}
+					<CategorySelect
+						className={styles.input}
+						category={category}
+						setCategory={setCategory}
+						categories={filteredCategories}
+					/>
 
 					<button type="submit" className={styles.submitButton}>
 						Add

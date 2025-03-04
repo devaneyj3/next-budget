@@ -4,7 +4,7 @@ import styles from "./Transactions.module.scss";
 import { Table } from "reactstrap";
 import { formatDate, transformMoney } from "@/utils/helper";
 
-export default function Transactions({ name, transactions, headers }) {
+export default function Transactions({ name, transactions }) {
 	return (
 		<div className={styles.transactionsContainer}>
 			<h2 className={styles.title}>{name}</h2>
@@ -12,9 +12,11 @@ export default function Transactions({ name, transactions, headers }) {
 				<Table hover responsive striped className={styles.table}>
 					<thead>
 						<tr>
-							{headers.map((header, index) => {
-								return <th key={index}>{header}</th>;
-							})}
+							<th>Date</th>
+							<th>Amount</th>
+							<th>Account</th>
+							<th>Category</th>
+							<th>Description</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -28,14 +30,9 @@ export default function Transactions({ name, transactions, headers }) {
 									<td className={type === "inc" ? styles.green : styles.red}>
 										{transformMoney(amount)}
 									</td>
+									<td>{account}</td>
+									<td>{Category && Category.name}</td>
 									<td>{description}</td>
-									{/* if headers is has 'Account' show only this. Edit this for later  */}
-									{headers[3] && (
-										<>
-											<td>{account}</td>
-											<td>{Category && Category.name}</td>
-										</>
-									)}
 								</tr>
 							);
 						})}

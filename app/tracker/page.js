@@ -11,20 +11,12 @@ import AddTransactionButton from "@/components/AddTransactionButton/AddTransacti
 export default function TrasactionTracker() {
 	const [showCategoryForm, setShowCategoryForm] = useState(false);
 
-	const transacitonHeaders = [
-		"Date",
-		"Amount",
-		"Account",
-		"Category",
-		"Description",
-	];
-
 	const { transactionsData } = useTransactionContext();
 	return (
 		<div className={styles.container}>
 			<Accounts />
 			<div className={styles.transactionForms}>
-				<AddTransactionButton isDetailForm={false} />
+				<AddTransactionButton title="Transaction" />
 				<p
 					className={styles.showCategory}
 					onClick={() => setShowCategoryForm(!showCategoryForm)}>
@@ -32,11 +24,7 @@ export default function TrasactionTracker() {
 				</p>
 			</div>
 			{showCategoryForm && <AddCategoryForm />}
-			<Transactions
-				name="Transactions"
-				transactions={transactionsData}
-				headers={transacitonHeaders}
-			/>
+			<Transactions name="Transactions" transactions={transactionsData} />
 		</div>
 	);
 }

@@ -14,8 +14,6 @@ export const CategoryContextProvider = ({ children }) => {
 	const [incomeCategories, setIncomeCategories] = useState([]);
 	const [expenseCategories, setExpenseCategories] = useState([]);
 
-	console.log(expenseCategories);
-
 	// Filter Categories based on type
 	useEffect(() => {
 		const filterCategories = () => {

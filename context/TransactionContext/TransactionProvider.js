@@ -23,6 +23,8 @@ export const TransactionContextProvider = ({ children }) => {
 	const [totalIncome, setTotalIncome] = useState(0);
 	const [totalExpenses, setTotalExpenses] = useState(0);
 	const [totalBalance, setTotalBalance] = useState(0);
+	const [projectedIncome, setProjectedIncome] = useState(3700);
+	const [projectedExpenses, setProjectedExpenses] = useState(3200);
 
 	// Updates account balances and totals
 	const updateAccountTotal = () => {
@@ -95,6 +97,8 @@ export const TransactionContextProvider = ({ children }) => {
 		<TransactionContext.Provider
 			value={{
 				getTransactions,
+				projectedExpenses,
+				projectedIncome,
 				transactionsData,
 				setTransactions,
 				accountBalances,

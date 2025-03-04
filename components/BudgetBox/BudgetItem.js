@@ -9,10 +9,6 @@ export default function BudgetItem({ category }) {
 	const { transactionsData } = useTransactionContext();
 	const [transactionsByCategory, setTransactionsByCategory] = useState([]);
 
-	const detailHeaders = ["Date", "Amount", "Description"];
-
-	let isDetailForm = true;
-
 	const [modal, setModal] = useState(false);
 
 	const toggle = () => setModal(!modal);
@@ -47,8 +43,7 @@ export default function BudgetItem({ category }) {
 				transactions={transactionsByCategory}
 				modal={modal}
 				toggle={toggle}
-				headers={detailHeaders}
-				isDetailForm={isDetailForm}
+				totalRecieved={transformMoney(totalReceived)}
 			/>
 		</tr>
 	);
