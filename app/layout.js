@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.scss";
 import ClientProviders from "./ClientProvider";
 import Footer from "@/components/Footer/Footer";
+import ProtectedLayout from "@/components/ProtectedLayout/ProtectedLayout";
 
 export const metadata = {
 	title: "Budget Tracker",
@@ -14,8 +15,7 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body>
 				<ClientProviders>
-					<Navbar />
-					{children}
+					<ProtectedLayout>{children}</ProtectedLayout>
 					<Footer />
 				</ClientProviders>
 			</body>

@@ -7,6 +7,8 @@ import { useCategoryContext } from "@/context/CategoryContext/CategoryContext";
 import Allocation from "@/components/Allocation/Allocation";
 import { useTransactionContext } from "@/context/TransactionContext/TransactionContext";
 import { useState } from "react";
+import AddCategoryForm from "@/components/Form/addCategoryForm";
+import AddCategoryButton from "@/components/AddCategoryButton/AddCategoryButton";
 
 export default function Home() {
 	const { incomeCategories, expenseCategories } = useCategoryContext();
@@ -15,12 +17,20 @@ export default function Home() {
 	const [allocations, setAllocations] = useState(
 		Object.fromEntries(expenseCategories.map((cat) => [cat.name, 0]))
 	);
+	const [showCategoryForm, setShowCategoryForm] = useState(false);
 
 	return (
 		<>
 			<div className={classes.allocation}>
 				<Allocation allocations={allocations} setAllocations={setAllocations} />
 			</div>
+			<div className={classes.allocation}>
+				<AddCategoryButton
+					setShowCategoryForm={setShowCategoryForm}
+					showCategoryForm={showCategoryForm}
+				/>
+			</div>
+			{showCategoryForm && <AddCategoryForm />}
 			<div className={classes.page_container}>
 				<section className={classes.budget}>
 					<div className={classes.income}>

@@ -25,6 +25,7 @@
   border-radius: 5%;
   padding: 10px;
   box-shadow: 1px 1px #888888;
+  transition: all 0.5s;
   &:hover {
     background-color: rgb(181, 179, 179);
   }
@@ -44,4 +45,17 @@
 
 .allocation_container > :nth-child(2) {
   flex: 2; // This is your RangeInput component
+}
+
+// Dropdown container for the additional information
+.dropdown {
+  overflow: hidden;
+  max-height: 0; // Initially hidden
+  transition: max-height 0.5s ease;
+  margin-top: 20px;
+}
+
+// When the dropdown is active/open, set a max-height large enough to reveal its content.
+.dropdown.open {
+  max-height: 500px; // Adjust this value depending on the content's height
 }

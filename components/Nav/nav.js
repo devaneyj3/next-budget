@@ -20,9 +20,6 @@ const Navbar = () => {
 			{/* Desktop Navigation */}
 			<ul className={styles.navLinks}>
 				<li>
-					<Link href="/">Start Here</Link>
-				</li>
-				<li>
 					<Link href="/tracker">Transaction Tracker</Link>
 				</li>
 				<li>
