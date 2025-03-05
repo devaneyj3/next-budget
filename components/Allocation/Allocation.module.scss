@@ -12,6 +12,23 @@
   }
 }
 
+.allocation_buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.manual_allocation {
+  border: none;
+  background-color: lightgrey;
+  font-size: small;
+  border-radius: 5%;
+  padding: 10px;
+  box-shadow: 1px 1px #888888;
+  &:hover {
+    background-color: rgb(181, 179, 179);
+  }
+}
 .leftToBudgetPercent {
   font-size: .75em;
   color: gray;

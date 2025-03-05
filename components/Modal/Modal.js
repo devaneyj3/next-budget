@@ -2,12 +2,22 @@ import React from "react";
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 import Transactions from "../Transactions/Transactions";
 import AddTransactionButton from "../AddTransactionButton/AddTransactionButton";
+import { transformMoney } from "@/utils/helper";
 
-function BudgetModal({ title, modal, toggle, transactions, totalRecieved }) {
+function BudgetModal({
+	title,
+	modal,
+	toggle,
+	transactions,
+	totalRecieved,
+	projectedIncome,
+}) {
 	return (
 		<Modal isOpen={modal} toggle={toggle} size="lg">
 			<ModalBody>
-				<p>{totalRecieved} spent out of 3200</p>
+				<p>
+					{totalRecieved} spent out of {transformMoney(projectedIncome)}
+				</p>
 				<Transactions name={title} transactions={transactions} />
 				<AddTransactionButton title={title} />
 			</ModalBody>

@@ -22,9 +22,6 @@ export default function Home() {
 				<Allocation allocations={allocations} setAllocations={setAllocations} />
 			</div>
 			<div className={classes.page_container}>
-				<div className={classes.summary_container}>
-					<Summary />
-				</div>
 				<section className={classes.budget}>
 					<div className={classes.income}>
 						<BudgetBox categories={incomeCategories} type="Income" />

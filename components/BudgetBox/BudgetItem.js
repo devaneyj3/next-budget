@@ -54,6 +54,7 @@ export default function BudgetItem({ category, type, allocations }) {
 				modal={modal}
 				toggle={toggle}
 				totalRecieved={transformMoney(totalReceived)}
+				projectedIncome={projectedIncome}
 			/>
 		</tr>
 	);
